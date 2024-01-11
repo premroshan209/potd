@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long
+#define ld long double
+#define all(a) (a).begin(), (a).end()
+
+int main() {
+
+    ll t;
+    cin>>t;
+    
+    string str;
+    cin>>str;
+    int count = 0;
+    int ans = 0;
+
+    for(int j = 0; j < t; j ++){
+        // int n;
+        // cin>>n;
+        if(str[j] == 'x'){
+            count++;
+            if(count == 3){
+                ans++;
+                count--;
+            }
+        }
+        else count = 0;
+
+    }  
+
+    cout<<ans;  
+
+    return 0;
+}
