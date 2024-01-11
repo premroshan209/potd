@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int numIdenticalPairs(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        int n=nums.size();
+        int count=0, temp=1;
+        for(int i=1;i<n;i++){
+            if(nums[i]==nums[i-1]){
+                temp++;
+            }
+            if((nums[i]!=nums[i-1] || i==n-1) && temp>1){
+                count=count+(temp*(temp-1))/2;
+                temp=1;
+            }
+        }
+        return count;
+
+    }
+};
