@@ -1,0 +1,21 @@
+//   https://leetcode.com/problems/find-the-k-beauty-of-a-number/submissions/1124319967/
+
+class Solution {
+public:
+    int divisorSubstrings(int num, int k) {
+        long long camp = pow(10,k);
+        int num2 = num / (camp / 10);
+        int count = 0;
+        int i = 0;
+
+        while(num2 != 0){
+            num2 /= 10;
+            long long d = pow(10,k + i);
+            int x = (num % d) / pow(10,i);
+            if(x != 0 && num % x == 0) count++;
+            i++;
+        }
+
+        return count;
+    }
+};
