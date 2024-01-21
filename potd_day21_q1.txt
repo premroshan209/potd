@@ -1,0 +1,53 @@
+//   https://leetcode.com/problems/3sum-closest/description/
+
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        sort(nums.begin(), nums.end());
+        // for(auto val:nums){
+        //     cout<<val<<" ";
+        // }
+        // cout<<endl;
+
+
+        int n = nums.size();
+        int l = 0, r = n-1; 
+        int ans;
+        int mini = INT_MAX;
+        for(int i = 0; i < n; i++){
+            
+            while(l < r){
+                if(i == l){
+                    l++;
+                    continue;
+                }
+                if(i == r){
+                    r--;
+                    continue;
+                }
+                int sum = nums[i] + nums[l] + nums[r];
+                //cout<<nums[i]<<"+"<<nums[l]<<"+"<<nums[r]<<"="<<sum<<" "<<endl;
+                if(sum == target) {
+                    ans = target;
+                    break;
+                }
+                if(abs(target - sum) < mini) {
+                    ans = sum;
+                    mini = abs(target - sum);
+                }
+                if(sum > target){
+                    r--;
+                }
+                if(sum < target){
+                    //if(i == 0)cout<<'*'<<l<<" "<<r;
+                    l++;
+                }
+            }
+            l = 0;
+            r = n - 1;
+            if(ans == target) break;
+        }
+
+        return ans;
+    }
+};
