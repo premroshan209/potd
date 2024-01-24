@@ -1,0 +1,30 @@
+//   https://leetcode.com/problems/fruit-into-baskets/description/
+
+class Solution {
+public:
+    int totalFruit(vector<int>& f) {
+        int n = f.size();
+        int j = 0;
+        map<int,int> mp;
+        int maxi = 0;
+
+        for(int i = 0; i < n; i ++){
+            mp[f[i]]++;
+            if(mp.size() > 2){
+                maxi = max(maxi, i-j);
+                while(mp.size() != 2){
+                    mp[f[j]]--;
+                    if(mp[f[j]] == 0){
+                        mp.erase(f[j]);
+                    }
+                    j++;
+                }
+            }
+            if(i == n-1 && mp.size() <= 2){
+                maxi = max(maxi,i - j + 1);
+            }
+        }
+
+        return maxi;
+    }
+};
